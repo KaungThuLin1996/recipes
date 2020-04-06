@@ -14,7 +14,7 @@ public class Ingredient implements Serializable {
     private BigDecimal amount;
     @ManyToOne
     private Recipe recipe;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
 
     public Long getId() {
