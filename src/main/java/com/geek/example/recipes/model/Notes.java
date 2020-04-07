@@ -10,11 +10,9 @@ public class Notes implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Lob
-    private String notes;
+    private String recipeNotes;
     @OneToOne
     private Recipe recipe;
-    @Lob
-    private String recipeNotes;
 
     public Long getId() {
         return id;
@@ -24,12 +22,12 @@ public class Notes implements Serializable {
         this.id = id;
     }
 
-    public String getNotes() {
-        return notes;
+    public String getRecipeNotes() {
+        return recipeNotes;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setRecipeNotes(String recipeNotes) {
+        this.recipeNotes = recipeNotes;
     }
 
     public Recipe getRecipe() {
@@ -38,13 +36,5 @@ public class Notes implements Serializable {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
     }
 }
