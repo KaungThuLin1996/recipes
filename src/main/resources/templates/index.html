@@ -2,28 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+    <title>Recipes</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
 </head>
 <body>
     <div class="container-fluid" style="margin-top: 20px;">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card bg-light mb-3" style="max-width: 640px;">
                     <div class="card-header">My Recipes!</div>
                     <div class="card-body">
-                        <table class="table">
-                            <thead class="thead-light">
+                        <table class="table" th:if="${!#lists.isEmpty(recipes)}">
+                            <thead>
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Description</th>
+                                    <th scope="col">View</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="recipe : ${recipes}">
                                     <td th:text="${recipe.id}"></td>
                                     <td th:text="${recipe.description}"></td>
+                                    <td><a th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -32,9 +33,7 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </body>
 </html>

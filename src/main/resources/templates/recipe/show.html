@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+                <div class="card bg-light mb-3" style="max-width: 640px;">
+                    <div class="card-header" th:text="${recipe.description}">Recipe Description Here!</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 align-middle">
+                                <p>Categories :</p>
+                            </div>
+                            <div class="col-md-9">
+                                <ul th:each="category : ${recipe.categories}" style="line-height: 5px;">
+                                    <li th:text="${category.categoryName}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Prep Time :</td>
+                                            <td th:text="${recipe.prepTime} + ' min'"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cook Time :</td>
+                                            <td th:text="${recipe.cookTime} + ' min'"></td>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>Difficulty :</td>
+                                        <td th:text="${recipe.difficulty}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Servings :</td>
+                                        <td th:text="${recipe.servings}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <p>Source :</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${recipe.source}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>URL :</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${recipe.url}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light mb-3" style="max-width: 640px;">
+                <div class="card-header">Ingredients</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul th:each="ingredient : ${recipe.ingredients}" style="line-height: 5px;">
+                                <li th:text="${ingredient.description}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light mb-3" style="max-width: 640px;">
+                <div class="card-header">Directions</div>
+                <div class="card-body">
+                    <p th:text="${recipe.directions}" class="text-justify">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+                        imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
+                        Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+                        porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                        feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
+                        Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+                        Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing
+                        sem neque sed ipsum.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light mb-3" style="max-width: 640px;">
+                <div class="card-header">Notes</div>
+                <div class="card-body">
+                    <p th:text="${recipe.notes.recipeNotes}" class="text-justify">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                        Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+                        imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
+                        Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+                        porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                        feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
+                        Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
+                        Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing
+                        sem neque sed ipsum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
