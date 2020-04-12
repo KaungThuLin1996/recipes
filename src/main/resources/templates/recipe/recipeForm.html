@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Form</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container-fluid" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form th:object="${recipe}" th:action="@{/recipe}" method="post" class="mb-3">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="card bg-light mb-3" style="max-width: 640px;">
+                        <div class="card-header">Edit Recipe Information</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="recipeDesc">Recipe Description:</label>
+                                        <input type="text" class="form-control" id="recipeDesc" th:field="*{description}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3 align-middle">
+                                    <p>Categories :</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                            Disabled checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>Prep Time</td>
+                                            <td>
+                                                <input type="text" class="form-control" th:field="*{prepTime}">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cook Time</td>
+                                            <td>
+                                                <input type="text" class="form-control" th:field="*{cookTime}">
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>Difficulty</td>
+                                            <td>
+                                                <select class="form-control" id="difficulty">
+                                                    <option>Easy</option>
+                                                    <option>Moderate</option>
+                                                    <option>Hard</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Servings</td>
+                                            <td>
+                                                <input type="text" class="form-control" th:field="*{servings}">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="source">Source:</label>
+                                        <input type="text" class="form-control" id="source" th:field="*{source}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="url">URL:</label>
+                                        <input type="text" class="form-control" id="url" th:field="*{url}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-light mb-3" style="max-width: 640px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    Ingredients
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li>afafadsfdsf</li>
+                                        <li>bafdsafdsafdsfd</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-light mb-3" style="max-width: 640px;">
+                        <div class="card-header">Directions</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="directions">Example textarea</label>
+                                <textarea class="form-control" id="directions" rows="3" th:field="*{directions}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-light mb-3" style="max-width: 640px;">
+                        <div class="card-header">Notes</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="notes">Example textarea</label>
+                                <textarea class="form-control" id="notes" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

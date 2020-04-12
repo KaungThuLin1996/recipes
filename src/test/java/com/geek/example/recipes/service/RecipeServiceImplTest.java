@@ -1,5 +1,6 @@
 package com.geek.example.recipes.service;
 
+import com.geek.example.recipes.command.RecipeCommand;
 import com.geek.example.recipes.converter.RecipeCommandToRecipe;
 import com.geek.example.recipes.converter.RecipeToRecipeCommand;
 import com.geek.example.recipes.model.Recipe;
@@ -54,5 +55,35 @@ class RecipeServiceImplTest {
         assertNotNull(recipeServiceImpl.findById(1L));
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
+    }
+
+    @Test
+    void getRecipeCommandByIdTest() {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
+
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
+
+        RecipeCommand commandById = recipeServiceImpl.findCommandById(1L);
+        assertNotNull(commandById, "Null Recipe Returned");
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
+    }
+
+    @Test
+    void testDeleteById() {
+        // given
+        Long idToDelete = 1L;
+
+        // when
+        recipeServiceImpl.deleteById(idToDelete);
+
+        // then
+        verify(recipeRepository, times(1)).deleteById(anyLong());
     }
 }
