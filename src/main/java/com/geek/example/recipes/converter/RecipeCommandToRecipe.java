@@ -42,7 +42,9 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         recipe.setDirections(source.getDirections());
         recipe.setImage(source.getImage());
         recipe.setDifficulty(source.getDifficulty());
-        recipe.setNotes(notesConverter.convert(source.getNotes()));
+        if (source.getNotes() != null) {
+            recipe.setNotes(notesConverter.convert(source.getNotes()));
+        }
         if (source.getIngredients() != null && source.getIngredients().size() > 0) {
             source.getIngredients().forEach((IngredientCommand ingredientCommand) ->
                     recipe.getIngredients().add(ingredientConverter.convert(ingredientCommand)));
@@ -51,6 +53,6 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
             source.getCategories().forEach((CategoryCommand categoryCommand) ->
                     recipe.getCategories().add(categoryConverter.convert(categoryCommand)));
         }
-        return null;
+        return recipe;
     }
 }
