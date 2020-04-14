@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload Form</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form enctype="multipart/form-data" th:action="@{'/recipe/' + ${recipe.id} + '/image'}" method="post" class="mb-3">
+                <div class="card bg-light mb-3" style="max-width: 640px;">
+                    <div class="card-header">Upload Image</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="imageFile">Image File Input</label>
+                            <input type="file" class="form-control-file" id="imageFile" name="imageFile">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

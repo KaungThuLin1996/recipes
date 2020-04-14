@@ -65,10 +65,12 @@
                                         <tr>
                                             <td>Difficulty</td>
                                             <td>
-                                                <select class="form-control" id="difficulty">
-                                                    <option>Easy</option>
-                                                    <option>Moderate</option>
-                                                    <option>Hard</option>
+                                                <select class="form-control"
+                                                        id="difficulty"
+                                                        th:field="*{difficulty}">
+                                                    <option th:each="diff : ${T(com.geek.example.recipes.model.Difficulty).values()}"
+                                                            th:value="${diff.name()}"
+                                                            th:text="${diff.name()}"></option>
                                                 </select>
                                             </td>
                                         </tr>
