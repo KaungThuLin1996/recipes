@@ -1,11 +1,14 @@
 package com.geek.example.recipes.controller;
 
 import com.geek.example.recipes.command.RecipeCommand;
+import com.geek.example.recipes.exception.NotFoundException;
 import com.geek.example.recipes.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
@@ -47,5 +50,27 @@ public class RecipeController {
         log.debug("Deleting id: " + id);
         recipeService.deleteById(Long.valueOf(id));
         return "redirect:/";
+    }
+
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(Exception ex) {
+        log.error("Handling Not Found Exception");
+        log.error(ex.getMessage());
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("404error");
+        mav.addObject("ex", ex);
+        return mav;
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView handleNumberFormat(Exception ex) {
+        log.error("Handling Number Format Exception");
+        log.error(ex.getMessage());
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("400error");
+        mav.addObject("ex", ex);
+        return mav;
     }
 }

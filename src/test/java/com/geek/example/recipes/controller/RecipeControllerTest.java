@@ -1,6 +1,7 @@
 package com.geek.example.recipes.controller;
 
 import com.geek.example.recipes.command.RecipeCommand;
+import com.geek.example.recipes.exception.NotFoundException;
 import com.geek.example.recipes.model.Recipe;
 import com.geek.example.recipes.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +45,21 @@ class RecipeControllerTest {
                 .andExpect(model().attribute("recipe", recipe))
                 .andExpect(model().attributeExists("recipe"))
                 .andExpect(view().name("recipe/show"));
+    }
+
+    @Test
+    void testGetRecipeNotFound() throws Exception {
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+        mockMvc.perform(get("/recipe/1/show"))
+                    .andExpect(status().isNotFound())
+                    .andExpect(view().name("404error"));
+    }
+
+    @Test
+    void testGetRecipeNumberFormatException() throws Exception {
+        mockMvc.perform(get("/recipe/asfd/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
     }
 
     @Test

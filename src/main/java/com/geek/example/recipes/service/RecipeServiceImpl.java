@@ -3,6 +3,7 @@ package com.geek.example.recipes.service;
 import com.geek.example.recipes.command.RecipeCommand;
 import com.geek.example.recipes.converter.RecipeCommandToRecipe;
 import com.geek.example.recipes.converter.RecipeToRecipeCommand;
+import com.geek.example.recipes.exception.NotFoundException;
 import com.geek.example.recipes.model.Recipe;
 import com.geek.example.recipes.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findById(Long id) {
-        return recipeRepository.findById(id).orElseThrow(RuntimeException::new);
+        return recipeRepository.findById(id).orElseThrow(() -> new NotFoundException("Recipe Not Found For ID Value: " + id));
     }
 
     @Transactional
